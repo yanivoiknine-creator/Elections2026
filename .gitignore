@@ -1,0 +1,16 @@
+# מסד הנתונים הבינארי נבנה מחדש מ-data/polls.json בכל הרצה
+data/polls.db
+data/polls.db.old
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+.vscode/
+.idea/
+
+# האתר הסטטי נבנה מחדש בכל הרצה (build_static.py / GitHub Actions)
+docs/
+
+# תיקיית העלאה ידנית — נבנית מחדש
+_upload/
