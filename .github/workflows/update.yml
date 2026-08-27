@@ -1,0 +1,65 @@
+name: עדכון סקרים ופרסום האתר
+
+on:
+  schedule:
+    # כל 3 שעות (בשעון UTC). סקרי הערב בישראל מתפרסמים בערך ב-17:00-19:00 UTC.
+    - cron: "10 */3 * * *"
+  workflow_dispatch:        # מאפשר להריץ ידנית מלשונית Actions
+  push:
+    branches: [main]
+    paths-ignore:
+      - "data/polls.json"   # מונע לולאה: הריצה עצמה מעדכנת את הקובץ הזה
+      - "README.md"
+
+permissions:
+  contents: write           # לשמירת data/polls.json בחזרה למאגר
+  pages: write              # לפרסום ב-GitHub Pages
+  id-token: write
+
+concurrency:
+  group: polls-update
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: התקנת תלויות
+        run: pip install -r requirements.txt
+
+      - name: בדיקות הפרסר
+        run: python test_parser.py
+
+      - name: עדכון סקרים ובניית האתר
+        run: python pipeline.py
+        continue-on-error: true     # חסימה זמנית של אתר לא תפיל את הפרסום
+
+      - name: שמירת הנתונים במאגר
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/polls.json
+          git diff --staged --quiet || git commit -m "עדכון סקרים אוטומטי [skip ci]"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
