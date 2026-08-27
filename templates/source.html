@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %}{{ src.name }} – סקרים{% endblock %}
+{% block refresh_scope %}{{ src.key }}{% endblock %}
+{% block refresh_label %}בדוק סקר חדש ב{{ src.short }}{% endblock %}
+
+{% block content %}
+
+<section class="hero" style="--accent:{{ src.color }}">
+  <div>
+    <h1><i class="swatch swatch--lg" style="background:{{ src.color }}"></i>{{ src.name }}</h1>
+    <p class="sub">{{ src.how }}</p>
+    {% if src.note %}<p class="sub note">ℹ️ {{ src.note }}</p>{% endif %}
+    <p class="sub"><a href="{{ src.site }}" target="_blank" rel="noopener" class="link-out">{{ src.site }} ↗</a></p>
+  </div>
+  {% if latest %}
+  <div class="hero__total">
+    <strong>{{ polls|length }}</strong>
+    <small>סקרים במאגר</small>
+  </div>
+  {% endif %}
+</section>
+
+{% if not latest %}
+  <section class="card empty">
+    <p>אין עדיין סקרים ממקור זה.</p>
+    <p class="hint">לחץ על "בדוק סקר חדש" למעלה, או הרץ <code>python seed.py</code> לטעינת היסטוריה.</p>
+  </section>
+{% else %}
+
+<section class="card">
+  <div class="card__head">
+    <h2>הסקר האחרון · {{ latest.poll_date }}</h2>
+    <span class="muted">
+      סך {{ '%g'|format(latest.results.values()|sum) }} מנדטים
+      {%- if latest.pollster %} · מכון {{ latest.pollster }}{% endif %}
+    </span>
+  </div>
+  {% if latest.title %}<p class="lead">{{ latest.title }}</p>{% endif %}
+  {% if latest.url %}
+    <p><a href="{{ latest.url }}" target="_blank" rel="noopener" class="link-out">לכתבה המקורית ↗</a></p>
+  {% endif %}
+
+  <div class="bars">
+    {% set mx = latest.results.values()|max %}
+    {% for k, seats in by_seats(latest.results) %}
+      {% if seats %}
+      <div class="bar-row">
+        <span class="bar-row__name">{{ display(k) }}</span>
+        <span class="bar-row__track">
+          <span class="bar-row__fill"
+                style="width: {{ (seats / mx * 100)|round(1) }}%; background: {{ color(k) }}"></span>
+        </span>
+        <span class="bar-row__val">{{ '%g'|format(seats) }}</span>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% set zeros = [] %}
+  {% for k, seats in by_seats(latest.results) if not seats %}{% set _ = zeros.append(display(k)) %}{% endfor %}
+  {% if zeros %}
+    <p class="hint">לא עוברות את אחוז החסימה בסקר זה: {{ zeros|join(', ') }}</p>
+  {% endif %}
+  {% if latest.inferred_joint %}
+    <p class="hint">
+      ⚠️ {{ '%g'|format(latest.inferred_joint) }} מנדטים של הרשימה המשותפת הושלמו
+      מההפרש ל-120, כי המקור אינו מפרסם את הרשימות הערביות המאוחדות.
+    </p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <div class="card__head">
+    <h2>מגמת המנדטים בסקרי {{ src.short }}</h2>
+    <button class="btn btn--ghost" id="toggleAll">הצג/הסתר הכל</button>
+  </div>
+  <div class="chart-box"><canvas id="srcChart"></canvas></div>
+  <p class="hint">כל קו הוא מפלגה. לחיצה על שם במקרא מסתירה או מציגה אותה.</p>
+</section>
+
+<section class="card">
+  <div class="card__head"><h2>כל הסקרים ({{ polls|length }})</h2></div>
+  <div class="table-scroll">
+    {% set cols = [] %}
+    {% for p in polls %}{% for k in p.results.keys() %}
+      {% if k not in cols and p.results[k] %}{% set _ = cols.append(k) %}{% endif %}
+    {% endfor %}{% endfor %}
+    <table class="tbl tbl--dense">
+      <thead>
+        <tr>
+          <th>תאריך</th>
+          <th>מקור</th>
+          <th class="num">סה"כ</th>
+          {% for k in order(cols) %}
+            <th class="num rot" title="{{ display(k) }}">
+              <i class="swatch" style="background:{{ color(k) }}"></i>{{ display(k) }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+      {% for p in polls %}
+        <tr>
+          <td class="nowrap">
+            {% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.poll_date }}</a>
+            {% else %}{{ p.poll_date }}{% endif %}
+          </td>
+          <td class="nowrap">
+            <span class="tag tag--{{ p.origin }}">{{ 'גרידה' if p.origin == 'scrape' else 'ארכיון' }}</span>
+            {% if p.inferred_joint %}
+              <span class="tag tag--inferred"
+                    title="המקור לא פרסם את הרשימות הערביות המאוחדות; {{ '%g'|format(p.inferred_joint) }} המנדטים החסרים להשלמת 120 יוחסו לרשימה המשותפת">
+                +{{ '%g'|format(p.inferred_joint) }} מושלם</span>
+            {% endif %}
+          </td>
+          <td class="num strong">{{ '%g'|format(p.results.values()|sum) }}</td>
+          {% for k in order(cols) %}
+            {% set v = p.results.get(k) %}
+            <td class="num {% if v is none %}muted{% endif %}">{{ '%g'|format(v) if v is not none else '–' }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">
+    "גרידה" = נקרא ישירות מהאתר בלחיצה על הכפתור. "ארכיון" = נטען מהיסטוריית
+    הסקרים הפתוחה כדי שהגרף יתחיל מלא.
+  </p>
+</section>
+
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  App.initSourceChart({{ src.key|tojson }});
+</script>
+{% endblock %}

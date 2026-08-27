@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block title %}ממוצע הסקרים – בחירות 2026{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div>
+    <h1>ממוצע הסקרים</h1>
+    <p class="sub">
+      ממוצע הסקר האחרון מכל אחד מ-{{ avg.sources_used|length }} המקורות
+      {% if avg.dates %}
+        {% set ds = avg.dates.values()|sort %}
+        <span class="dates">
+          (סקרים מ-{{ ds|first }}{% if ds|first != ds|last %} עד {{ ds|last }}{% endif %})
+        </span>
+      {% endif %}
+    </p>
+  </div>
+  <div class="hero__total">
+    <strong>{{ avg.total }}</strong>
+    <small>סך המנדטים בממוצע</small>
+  </div>
+</section>
+
+<section class="blocs">
+  {% for bloc in ['bibi', 'change', 'arab'] %}
+    {% if bloc in avg.blocs %}
+      <div class="bloc bloc--{{ bloc }}">
+        <span class="bloc__name">{{ bloc_names[bloc] }}</span>
+        <span class="bloc__val">{{ '%.1f'|format(avg.blocs[bloc]) }}</span>
+      </div>
+    {% endif %}
+  {% endfor %}
+</section>
+
+<section class="card">
+  <div class="card__head">
+    <h2>מגמת המנדטים – ממוצע הסקרים</h2>
+    <div class="chart-tools">
+      <div class="segmented" id="rangeSel">
+        <button data-days="60">חודשיים</button>
+        <button data-days="120" class="is-active">4 חודשים</button>
+        <button data-days="">הכל</button>
+      </div>
+      <button class="btn btn--ghost" id="toggleAll">הצג/הסתר הכל</button>
+    </div>
+  </div>
+  <div class="chart-box"><canvas id="avgChart"></canvas></div>
+  <p class="hint">
+    לכל תאריך נלקח מכל מקור הסקר האחרון שלו נכון לאותו יום, והתוצאות מוצעו.
+    לחיצה על שם מפלגה במקרא מסתירה או מציגה את הקו שלה.
+  </p>
+</section>
+
+<section class="card">
+  <div class="card__head"><h2>הממוצע לפי מפלגה</h2></div>
+  <div class="table-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>מפלגה</th>
+          <th class="num">ממוצע</th>
+          {% for s in sources %}<th class="num src-th" style="--dot:{{ s.color }}">
+            <i class="dot"></i>{{ s.short }}</th>{% endfor %}
+          <th class="num">מקורות</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for r in avg.rows %}
+        {% if r.avg > 0 or r.sources >= 2 %}
+        <tr>
+          <td class="party"><i class="swatch" style="background:{{ r.color }}"></i>{{ r.name }}</td>
+          <td class="num strong"
+              title="ממוצע גולמי: {{ '%.2f'|format(r.raw_avg) }} (על פני {{ r.sources }} מקורות)">
+            {{ '%.1f'|format(r.avg) }}</td>
+          {% for s in sources %}
+            {% set v = r.per_source.get(s.key) %}
+            <td class="num {% if v is none %}muted{% endif %}">
+              {{ '%g'|format(v) if v is not none else '–' }}</td>
+          {% endfor %}
+          <td class="num muted">{{ r.sources }}/{{ r.of }}</td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">
+    "–" פירושו שהמפלגה כלל לא מופיעה בסקר האחרון של אותו מקור, ולכן היא אינה
+    נספרת בממוצע שלה. אפס פירושו שהמקור דיווח עליה במפורש כלא עוברת את אחוז החסימה.
+  </p>
+  {% if avg.normalized %}
+  <p class="hint note">
+    ℹ️ כל סקר בנפרד מסתכם ב-120, אבל סכום הממוצעים לפי מפלגה יצא
+    <strong>{{ '%.2f'|format(avg.raw_total) }}</strong>, ולכן הוא נורמל ל-120.
+    הסיבה:
+    {% for p in avg.partial %}<strong>{{ p.name }}</strong> נמדדה רק
+      ב-{{ p.sources }} מתוך {{ p.of }} הסקרים{% if not loop.last %}, {% endif %}{% endfor %}
+    — מפלגה כזו מחולקת במספר מקורות קטן יותר משאר המפלגות, וזה מנפח את הסכום.
+    לחלק אותה במספר המלא היה מניח בטעות שהסוקרים שלא שאלו עליה נתנו לה אפס,
+    ולכן במקום זה כל המפלגות נמתחות באותה פרופורציה והיחסים ביניהן נשמרים.
+    ריחוף מעל מספר בעמודת "ממוצע" מציג את הערך הגולמי.
+  </p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <div class="card__head"><h2>מצב המקורות</h2></div>
+  <div class="src-grid">
+    {% for s in status %}
+      <article class="src" style="--accent:{{ s.color }}">
+        <header class="src__head">
+          <a href="/source/{{ s.key }}"><h3>{{ s.name }}</h3></a>
+          <span class="pill pill--{{ s.last_status or 'none' }}">
+            {% if s.last_status == 'new' %}סקר חדש
+            {% elif s.last_status == 'updated' %}עודכן
+            {% elif s.last_status == 'unchanged' %}מעודכן
+            {% elif s.last_status == 'error' %}שגיאה
+            {% else %}לא נבדק{% endif %}
+          </span>
+        </header>
+        {% if s.poll_date %}
+          <p class="src__date">סקר אחרון: <strong>{{ s.poll_date }}</strong></p>
+          <p class="src__title">{{ s.poll_title or '' }}</p>
+          <p class="src__meta">
+            {{ s.n_parties }} מפלגות · סך {{ s.total }} מנדטים
+            {%- if s.total and s.total < 118 %} <span class="warn" title="המקור לא מפרסם את כל המפלגות">חלקי</span>{% endif %}
+            {%- if s.pollster %} · מכון {{ s.pollster }}{% endif %}
+          </p>
+          <p class="src__meta">{{ s.n_polls }} סקרים במאגר</p>
+        {% else %}
+          <p class="src__date muted">אין עדיין נתונים – לחץ "בדוק סקרים חדשים"</p>
+        {% endif %}
+        {% if s.last_status == 'error' %}
+          <p class="src__err">{{ s.last_message }}</p>
+        {% endif %}
+        <footer class="src__foot">
+          <a href="/source/{{ s.key }}" class="btn btn--ghost btn--sm">לעמוד המקור</a>
+          <button class="btn btn--ghost btn--sm refresh-one" data-source="{{ s.key }}">בדוק עכשיו</button>
+          <a href="{{ s.site }}" target="_blank" rel="noopener" class="link-out">האתר ↗</a>
+        </footer>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  App.initAverageChart();
+</script>
+{% endblock %}

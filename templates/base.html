@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}מעקב סקרים – בחירות 2026{% endblock %}</title>
+<meta name="description" content="ממוצע סקרי המנדטים לבחירות לכנסת ה-26, מכל אתרי החדשות במקום אחד">
+<link rel="stylesheet" href="{{ base }}static/style.css?v={{ asset_v }}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📊</text></svg>">
+<script src="{{ base }}static/chart.umd.min.js"></script>
+</head>
+<body data-base="{{ base }}" data-static="{{ '1' if static_mode else '0' }}">
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a class="brand" href="{{ base }}">
+      <span class="brand__mark">26</span>
+      <span>
+        <strong>מעקב סקרים</strong>
+        <small>הבחירות לכנסת ה-26</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a href="{{ base }}" class="nav__link {% if page == 'home' %}is-active{% endif %}">ממוצע הסקרים</a>
+      {% for s in sources %}
+        <a href="{{ base }}source/{{ s.key }}/"
+           class="nav__link {% if page == s.key %}is-active{% endif %}"
+           style="--dot:{{ s.color }}"><i class="dot"></i>{{ s.name }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="check">
+      {% if not static_mode %}
+        <button id="refreshBtn" class="btn btn--primary" type="button"
+                data-source="{% block refresh_scope %}{% endblock %}">
+          <span class="btn__spin" aria-hidden="true"></span>
+          <span class="btn__label">{% block refresh_label %}בדוק סקרים חדשים{% endblock %}</span>
+        </button>
+      {% endif %}
+      <span id="lastCheck" class="check__when" data-iso="{{ last_check or '' }}">
+        {% if not last_check %}עוד לא בוצעה בדיקה{% endif %}
+      </span>
+      {% if static_mode %}
+        <span class="check__auto">מתעדכן אוטומטית כמה פעמים ביום</span>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if not static_mode %}
+  <div id="autobar" class="autobar" data-state="{{ auto_state }}" hidden>
+    <span class="autobar__spin" aria-hidden="true"></span>
+    <span id="autobarText">בודק סקרים חדשים בכל האתרים…</span>
+  </div>
+  {% endif %}
+</header>
+
+<div id="toast" class="toast" hidden></div>
+
+<main class="wrap">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="wrap foot">
+  הנתונים נגרדים ישירות מאתרי הערוצים. סקרים היסטוריים נטענו מהארכיונים
+  הפתוחים של N12 וערוץ 14. אין קשר רשמי לאף אחד מהגופים.
+</footer>
+
+<script src="{{ base }}static/app.js?v={{ asset_v }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
