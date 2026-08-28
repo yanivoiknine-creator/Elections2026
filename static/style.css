@@ -301,3 +301,7 @@ code { background: var(--panel-2); padding: 1px 6px; border-radius: 5px; font-si
 /* באתר הסטטי אין כפתור בדיקה — במקומו הסבר קצר */
 .check__auto { font-size: 10.5px; color: var(--muted); text-align: center; }
 .tag--madad { border-color: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--accent); }
+
+/* מקור שחוסם את השרת — הנתונים תקינים, רק לא ניתן היה לבדוק אם יש חדש */
+.pill--blocked { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+.src__blocked { margin: 4px 0 0; font-size: 12px; color: var(--warn); line-height: 1.5; }
