@@ -33,6 +33,11 @@ HEADERS = {
 
 TIMEOUT = 45
 
+# חלק מהאתרים חוסמים לפי טביעת האצבע של ה-TLS ולא רק לפי כתובת ה-IP:
+# zman.co.il למשל מחזיר 403 לפרופיל edge101 ו-200 לפרופיל chrome, מאותו
+# מחשב בדיוק. לכן על 403 מנסים שוב עם פרופיל דפדפן אחר לפני שמוותרים.
+IMPERSONATE_CHAIN = ("chrome", "chrome131", "safari155", "chrome99_android")
+
 # ה-widget של N12 מתארח על hostname עם קו תחתון, ולכן התעודה שלו לא מכסה
 # אותו ואימות SSL נכשל. הדומיין ידוע ומגיש נתונים ציבוריים בלבד.
 NO_VERIFY_HOSTS = ("mako_elections.devdinocdn.com",)
@@ -53,19 +58,24 @@ def get(url, headers=None, timeout=TIMEOUT):
         h.update(headers)
     verify = _verify_for(url)
 
+    last = None
     if HAVE_CURL_CFFI:
-        try:
-            r = _curl.get(url, headers=h, timeout=timeout, impersonate="chrome",
-                          verify=verify, allow_redirects=True)
+        blocked = None
+        for profile in IMPERSONATE_CHAIN:
+            try:
+                r = _curl.get(url, headers=h, timeout=timeout, impersonate=profile,
+                              verify=verify, allow_redirects=True)
+            except Exception as e:
+                last = e
+                break                      # תקלת רשת — פרופיל אחר לא יעזור
+            if r.status_code in (403, 429):
+                blocked = FetchError(f"{r.status_code} עבור {url}")
+                continue                   # אולי חסימה לפי טביעת אצבע
             if r.status_code >= 400:
                 raise FetchError(f"{r.status_code} עבור {url}")
             return r.text
-        except FetchError:
-            raise
-        except Exception as e:
-            last = e   # נופלים ל-httpx
-    else:
-        last = None
+        if blocked is not None:
+            raise blocked
 
     try:
         with httpx.Client(follow_redirects=True, timeout=timeout,
