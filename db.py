@@ -60,6 +60,12 @@ def _now():
 
 NEAR_DAYS = 2
 
+# עדיפות מקורות הנתונים, מהאמין לפחות אמין:
+#   scrape — נגרד מהאתר של הגוף עצמו
+#   madad  — אתר "המדד", גיבוי כשהאתר חוסם אותנו
+#   seed   — ארכיון היסטורי
+ORIGIN_RANK = {"scrape": 3, "madad": 2, "seed": 1}
+
 
 def _same_poll_nearby(con, source, poll_date, results):
     """מאתר סקר קיים שהוא בעצם אותו סקר, רק בתאריך שונה ביום-יומיים.
@@ -109,10 +115,10 @@ def save_poll(source, poll_date, results, title=None, url=None,
             poll_id = row["id"]
             existing_origin = con.execute(
                 "SELECT origin FROM polls WHERE id=?", (poll_id,)).fetchone()["origin"]
-            # סקר שנגרד ישירות מהאתר גובר על אותו סקר מארכיון: הוא מדויק
-            # יותר, ובלעדי הכלל הזה הזריעה והגרידה היו דורסות זו את זו
-            # בכל הרצה ומייצרות "עדכון" מדומה בלי סוף.
-            keep = existing_origin == "scrape" and origin != "scrape"
+            # מקור ישיר מהאתר גובר על אותו סקר שהגיע בעקיפין. בלי הכלל הזה
+            # הזריעה והגרידה היו דורסות זו את זו בכל הרצה ומייצרות "עדכון"
+            # מדומה בלי סוף.
+            keep = ORIGIN_RANK.get(origin, 0) < ORIGIN_RANK.get(existing_origin, 0)
             con.execute(
                 "UPDATE polls SET title=COALESCE(?,title), url=COALESCE(?,url),"
                 " pollster=COALESCE(?,pollster), origin=?, raw=COALESCE(?,raw),"
@@ -236,6 +242,25 @@ def import_json(path=None):
         except (KeyError, ValueError):
             continue
     return added
+
+
+def has_equivalent_poll(source, poll_date, results):
+    """האם אותו סקר כבר שמור, גם אם בתאריך שונה ביום-יומיים?
+
+    מקורות שונים מתארכים את אותו סקר לפי יום הדגימה או יום הפרסום. בלי
+    הבדיקה הזו, סקר שכבר קיים היה מדווח כ"חדש" בכל הרצה מחדש.
+    """
+    with connect() as con:
+        row = con.execute("SELECT id FROM polls WHERE source=? AND poll_date=?",
+                          (source, poll_date)).fetchone()
+        if row is None:
+            row = _same_poll_nearby(con, source, poll_date, results)
+        if row is None:
+            return False
+        got = {r["party"]: r["seats"] for r in con.execute(
+            "SELECT party, seats FROM results WHERE poll_id=? AND seats != 0",
+            (row["id"],))}
+        return got == {k: v for k, v in results.items() if v}
 
 
 def merge_duplicates():

@@ -15,7 +15,7 @@ import sys
 
 import db
 import sources
-from scrapers import n12, c14
+from scrapers import n12, c14, themadad
 
 # מזהי המקורות אצלנו -> איך הם נקראים בכל אחד משני הארכיונים
 MAP = {
@@ -44,6 +44,12 @@ def _from_c14_archive(outlet):
             for p in c14.polls_by_outlet(outlet) if p["poll_date"]]
 
 
+def _from_madad(key):
+    return [{"poll_date": p["poll_date"], "results": p["results"],
+             "pollster": p.get("pollster"), "raw": {"archive": "themadad"}}
+            for p in themadad.polls_for(key) if p["poll_date"]]
+
+
 def seed_source(key, verbose=True, force=False):
     """טוען היסטוריה למקור אחד. מעדיף את ארכיון N12 — הוא שלם יותר.
 
@@ -62,6 +68,14 @@ def seed_source(key, verbose=True, force=False):
         if p["poll_date"] not in seen:
             polls.append(p)
             seen.add(p["poll_date"])
+    # אתר המדד הוא הארכיון השלם ביותר, ומשלים תאריכים שחסרים בשניים האחרים
+    try:
+        for p in _from_madad(key):
+            if p["poll_date"] not in seen:
+                polls.append(p)
+                seen.add(p["poll_date"])
+    except Exception:
+        pass
 
     polls.sort(key=lambda p: p["poll_date"])
     # ב-force דורסים גם סקרים שכבר קיימים, חוץ מאלה שנגרדו ישירות מהאתר
