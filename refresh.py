@@ -31,10 +31,20 @@ def refresh_source(key):
             found = themadad.latest(key)
             origin, note = "madad", " (דרך אתר המדד — האתר עצמו לא נגיש)"
         except Exception as e2:
-            msg = f"{direct_err} | גיבוי המדד: {type(e2).__name__}: {e2}"
-            db.log_refresh(key, "error", msg)
+            detail = f"{direct_err} | גיבוי המדד: {type(e2).__name__}: {e2}"
+            # 403 מכל הדרכים = האתר חוסם את השרת שממנו רצה הבדיקה, לא תקלה
+            # אצלנו. הנתונים ששמורים עדיין נכונים, ולכן זה לא "שגיאה" אלא
+            # מצב של "לא הצלחנו לבדוק אם יש חדש".
+            if "403" in detail and before:
+                msg = (f"האתר חוסם גישה מהשרת שמריץ את הבדיקה. "
+                       f"מוצג הסקר האחרון שנשמר ({before['poll_date']}).")
+                db.log_refresh(key, "blocked", msg, before["poll_date"])
+                return {"source": key, "name": src["name"], "status": "blocked",
+                        "poll_date": before["poll_date"], "message": msg,
+                        "detail": detail}
+            db.log_refresh(key, "error", detail)
             return {"source": key, "name": src["name"], "status": "error",
-                    "message": msg}
+                    "message": detail}
 
     # אתר המדד מתעדכן לעיתים לפני שהגוף מעלה את הכתבה שלו. אם יש שם סקר
     # חדש יותר מזה שנמצא באתר עצמו, לוקחים אותו — אחרת היינו מפספסים סקרים.
@@ -112,6 +122,7 @@ def _summary(results):
     new = [r for r in results if r["status"] == "new"]
     upd = [r for r in results if r["status"] == "updated"]
     err = [r for r in results if r["status"] == "error"]
+    blk = [r for r in results if r["status"] == "blocked"]
     parts = []
     if new:
         parts.append("נמצאו " + str(len(new)) + " סקרים חדשים: " +
@@ -120,6 +131,9 @@ def _summary(results):
         parts.append(f"{len(upd)} סקרים עודכנו")
     if not new and not upd:
         parts.append("אין סקרים חדשים")
+    if blk:
+        parts.append(f"{len(blk)} מקורות חוסמים את השרת (מוצגים הנתונים השמורים): "
+                     + ", ".join(r["name"] for r in blk))
     if err:
         parts.append(f"{len(err)} מקורות נכשלו: " + ", ".join(r["name"] for r in err))
     return " · ".join(parts)

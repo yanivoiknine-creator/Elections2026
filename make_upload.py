@@ -18,6 +18,7 @@ SPECIAL = "_קבצים-מיוחדים"
 ROOT_FILES = [
     "README.md", "requirements.txt", "run.bat", "run-lan.bat", "setup.bat",
     "app.py", "build_static.py", "pipeline.py", "make_upload.py",
+    "save_chat.py", "preview.bat", "refresh-local.bat",
     "db.py", "parties.py", "sources.py", "aggregate.py", "refresh.py",
     "seed.py", "test_parser.py",
 ]
