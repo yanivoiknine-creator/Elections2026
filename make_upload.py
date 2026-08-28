@@ -48,6 +48,17 @@ NOTE = """שני הקבצים בתיקייה הזו לא נגררים ל-GitHub 
    העתיקו לתוכו את התוכן של gitignore.txt, ולחצו Commit changes.
 
 
+3) gitattributes.txt — מכריח סופי שורה של יוניקס.  מומלץ.
+
+   Create new file, שם הקובץ:
+
+       .gitattributes
+
+   (בלי סיומת txt!)
+   בלעדיו, קובץ שנוצר על חלונות וקובץ שנוצר בשרת של GitHub נראים
+   שונים לגמרי לגיט, וכל ריצה מייצרת commit של אלפי שורות לחינם.
+
+
 את שאר הקבצים פשוט גוררים לחלון של  Add file -> Upload files.
 אל תגררו את התיקייה הזו.
 """
@@ -75,6 +86,7 @@ def main():
     sp = os.path.join(OUT, SPECIAL)
     os.makedirs(sp)
     shutil.copy2(os.path.join(BASE, ".gitignore"), os.path.join(sp, "gitignore.txt"))
+    shutil.copy2(os.path.join(BASE, ".gitattributes"), os.path.join(sp, "gitattributes.txt"))
     shutil.copy2(os.path.join(BASE, ".github", "workflows", "update.yml"),
                  os.path.join(sp, "update.yml"))
     with open(os.path.join(sp, "קרא-אותי.txt"), "w", encoding="utf-8") as f:

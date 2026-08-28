@@ -57,13 +57,14 @@ def _asset_version():
 
 def _write(path, text):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
+    # LF תמיד, כדי שהפלט יהיה זהה בין חלונות לשרת של GitHub
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         f.write(text)
 
 
 def _write_json(path, data):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
 
 
