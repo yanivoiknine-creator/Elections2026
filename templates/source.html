@@ -105,7 +105,9 @@
             {% else %}{{ p.poll_date }}{% endif %}
           </td>
           <td class="nowrap">
-            <span class="tag tag--{{ p.origin }}">{{ 'גרידה' if p.origin == 'scrape' else 'ארכיון' }}</span>
+            <span class="tag tag--{{ p.origin }}"
+                  title="{{ {'scrape': 'נגרד ישירות מאתר הגוף', 'madad': 'האתר לא היה נגיש, והנתון נלקח מאתר המדד', 'seed': 'נטען מארכיון היסטורי'}[p.origin] or '' }}">
+              {{ {'scrape': 'גרידה', 'madad': 'המדד', 'seed': 'ארכיון'}[p.origin] or p.origin }}</span>
             {% if p.inferred_joint %}
               <span class="tag tag--inferred"
                     title="המקור לא פרסם את הרשימות הערביות המאוחדות; {{ '%g'|format(p.inferred_joint) }} המנדטים החסרים להשלמת 120 יוחסו לרשימה המשותפת">
