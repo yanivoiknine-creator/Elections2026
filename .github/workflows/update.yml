@@ -44,13 +44,31 @@ jobs:
         run: python pipeline.py
         continue-on-error: true     # חסימה זמנית של אתר לא תפיל את הפרסום
 
+      # דחיפה נדחית כשמשהו אחר נכנס ל-main בזמן שהריצה עבדה — למשל
+      # העלאת קובץ דרך האתר של GitHub. במקרה כזה מושכים את השינוי,
+      # מניחים את ה-commit שלנו מעליו ומנסים שוב.
       - name: שמירת הנתונים במאגר
+        continue-on-error: true    # כשל בשמירה לא ימנע את פרסום האתר
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/polls.json
-          git diff --staged --quiet || git commit -m "עדכון סקרים אוטומטי [skip ci]"
-          git push
+          if git diff --staged --quiet; then
+            echo "אין שינוי בנתונים — אין מה לשמור."
+            exit 0
+          fi
+          git commit -m "עדכון סקרים אוטומטי [skip ci]"
+          for i in 1 2 3; do
+            if git push; then
+              echo "נשמר."
+              exit 0
+            fi
+            echo "הדחיפה נדחתה (ניסיון $i) — מסנכרן מול main ומנסה שוב."
+            git pull --rebase --autostash origin main || exit 1
+            sleep 5
+          done
+          echo "לא הצלחתי לשמור אחרי 3 ניסיונות. הריצה הבאה תנסה שוב."
+          exit 1
 
       - uses: actions/configure-pages@v6
 
