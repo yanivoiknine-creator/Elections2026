@@ -216,8 +216,12 @@ def export_json(path=None):
     payload = {"count": len(polls),
                "polls": sorted(polls, key=lambda p: (p["source"], p["poll_date"]))}
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
+    # newline מפורש: בלעדיו פייתון על חלונות כותב CRLF והשרת של GitHub
+    # כותב LF, כך שאותו תוכן בדיוק נראה כשינוי של *כל* השורות בכל ריצה
+    # ומייצר commit ענק לחינם.
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(payload, f, ensure_ascii=False, indent=1, sort_keys=True)
+        f.write("\n")
     return len(polls)
 
 
