@@ -110,11 +110,12 @@
     {% for s in status %}
       <article class="src" style="--accent:{{ s.color }}">
         <header class="src__head">
-          <a href="/source/{{ s.key }}"><h3>{{ s.name }}</h3></a>
+          <a href="{{ base }}source/{{ s.key }}/"><h3>{{ s.name }}</h3></a>
           <span class="pill pill--{{ s.last_status or 'none' }}">
             {% if s.last_status == 'new' %}סקר חדש
             {% elif s.last_status == 'updated' %}עודכן
             {% elif s.last_status == 'unchanged' %}מעודכן
+            {% elif s.last_status == 'blocked' %}לא נבדק
             {% elif s.last_status == 'error' %}שגיאה
             {% else %}לא נבדק{% endif %}
           </span>
@@ -133,10 +134,15 @@
         {% endif %}
         {% if s.last_status == 'error' %}
           <p class="src__err">{{ s.last_message }}</p>
+        {% elif s.last_status == 'blocked' %}
+          <p class="src__blocked">{{ s.last_message }}</p>
         {% endif %}
         <footer class="src__foot">
-          <a href="/source/{{ s.key }}" class="btn btn--ghost btn--sm">לעמוד המקור</a>
-          <button class="btn btn--ghost btn--sm refresh-one" data-source="{{ s.key }}">בדוק עכשיו</button>
+          {# "בדוק עכשיו" דורש שרת שיגרד, ולכן אין לו מקום באתר הסטטי.
+             "לעמוד המקור" הוסר — שם המקור בראש הכרטיס כבר מקשר לשם. #}
+          {% if not static_mode %}
+            <button class="btn btn--ghost btn--sm refresh-one" data-source="{{ s.key }}">בדוק עכשיו</button>
+          {% endif %}
           <a href="{{ s.site }}" target="_blank" rel="noopener" class="link-out">האתר ↗</a>
         </footer>
       </article>
