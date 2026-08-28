@@ -300,3 +300,4 @@ code { background: var(--panel-2); padding: 1px 6px; border-radius: 5px; font-si
 
 /* באתר הסטטי אין כפתור בדיקה — במקומו הסבר קצר */
 .check__auto { font-size: 10.5px; color: var(--muted); text-align: center; }
+.tag--madad { border-color: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--accent); }
