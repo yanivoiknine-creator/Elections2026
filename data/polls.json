@@ -1780,30 +1780,25 @@
   },
   {
    "inferred_joint": null,
-   "origin": "seed",
+   "origin": "scrape",
    "poll_date": "2026-07-27",
-   "pollster": "צוריאל שרון",
+   "pollster": "דיירקט פולס",
    "results": {
-    "balad": 0.0,
     "bayit_tzioni": 0.0,
     "beyahad": 9.0,
-    "democrats": 10.0,
-    "hadash_taal": 7.0,
-    "joint": 0.0,
+    "joint": 7.0,
     "kachol_lavan": 0.0,
     "likud": 29.0,
-    "otzma": 8.0,
     "raam": 5.0,
     "shas": 9.0,
     "tzionut": 5.0,
     "yahadut": 8.0,
     "yashar": 21.0,
-    "yesh_atid": 0.0,
     "yisrael_beit": 9.0
    },
    "source": "i24",
-   "title": "סקר i24NEWS – 2026-07-27",
-   "url": null
+   "title": "הליכוד מתחזקת, ישר נחלשת - ושינויים במפת הגושים: סקר המנדטים של I24NEWS",
+   "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-02214cba"
   },
   {
    "inferred_joint": null,
