@@ -1,5 +1,5 @@
 {
- "count": 226,
+ "count": 227,
  "polls": [
   {
    "inferred_joint": null,
@@ -4340,6 +4340,32 @@
    "source": "n12",
    "title": "סקר החדשות 12 – 2026-08-24",
    "url": null
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-08-31",
+   "pollster": null,
+   "results": {
+    "ahdut": 0.0,
+    "bayit_tzioni": 0.0,
+    "beyahad": 15.0,
+    "democrats": 11.0,
+    "joint": 7.0,
+    "kachol_lavan": 0.0,
+    "likud": 23.0,
+    "otzma": 8.0,
+    "raam": 4.0,
+    "shas": 7.0,
+    "tzionut": 0.0,
+    "winter": 4.0,
+    "yahadut": 8.0,
+    "yashar": 24.0,
+    "yisrael_beit": 9.0
+   },
+   "source": "n12",
+   "title": "סקר החדשות 12 – 2026-08-31",
+   "url": "https://special.n12.co.il/elections2026"
   },
   {
    "inferred_joint": null,
