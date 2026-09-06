@@ -1,5 +1,5 @@
 {
- "count": 227,
+ "count": 228,
  "polls": [
   {
    "inferred_joint": null,
@@ -2389,6 +2389,31 @@
    "source": "kan",
    "title": "סקר כאן חדשות: איזנקוט מוביל על נתניהו, שמפסיד גם בשאלת ההתאמה לראשות הממשלה",
    "url": "https://www.kan.org.il/content/kan-news/politic/1092076/"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-06",
+   "pollster": "קנטאר",
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 13.0,
+    "democrats": 8.0,
+    "joint": 7.0,
+    "kachol_lavan": 0.0,
+    "likud": 20.0,
+    "otzma": 7.0,
+    "raam": 6.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 4.0,
+    "yahadut": 8.0,
+    "yashar": 23.0,
+    "yisrael_beit": 7.0
+   },
+   "source": "kan",
+   "title": "סקר כאן חדשות: הנדל וזליכה עוברים - ומסבכים את תמונת הגושים",
+   "url": "https://www.kan.org.il/content/kan-news/politic/1096840/"
   },
   {
    "inferred_joint": null,
