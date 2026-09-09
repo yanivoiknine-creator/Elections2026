@@ -1,5 +1,5 @@
 {
- "count": 229,
+ "count": 231,
  "polls": [
   {
    "inferred_joint": null,
@@ -1906,6 +1906,28 @@
    "source": "i24",
    "title": "סקר מנדטים דרמטי של I24NEWS: וינטר מטלטל את תמונת המנדטים בימין",
    "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-a44c587c"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-09",
+   "pollster": "דיירקט פולס",
+   "results": {
+    "bayit_tzioni": 0.0,
+    "beyahad": 10.0,
+    "democrats": 9.0,
+    "joint": 7.0,
+    "kachol_lavan": 0.0,
+    "likud": 27.0,
+    "otzma": 8.0,
+    "raam": 5.0,
+    "winter": 27.0,
+    "yahadut": 8.0,
+    "yashar": 22.0
+   },
+   "source": "i24",
+   "title": "סקר I24NEWS אחרי סגירת הרשימות: הליכוד שומרת על כוחה, וינטר נחלש",
+   "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-a92f58d0"
   },
   {
    "inferred_joint": null,
@@ -4414,6 +4436,31 @@
    },
    "source": "n12",
    "title": "סקר החדשות 12 – 2026-09-07",
+   "url": "https://special.n12.co.il/elections2026"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-09",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 0.0,
+    "beyahad": 13.0,
+    "democrats": 10.0,
+    "joint": 7.0,
+    "kachol_lavan": 0.0,
+    "likud": 21.0,
+    "otzma": 6.0,
+    "raam": 4.0,
+    "shas": 7.0,
+    "tzionut": 5.0,
+    "winter": 5.0,
+    "yahadut": 8.0,
+    "yashar": 25.0,
+    "yisrael_beit": 9.0
+   },
+   "source": "n12",
+   "title": "סקר החדשות 12 – 2026-09-09",
    "url": "https://special.n12.co.il/elections2026"
   },
   {
