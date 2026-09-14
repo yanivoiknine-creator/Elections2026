@@ -1,5 +1,5 @@
 {
- "count": 231,
+ "count": 233,
  "polls": [
   {
    "inferred_joint": null,
@@ -2439,6 +2439,31 @@
   },
   {
    "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-14",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 12.0,
+    "democrats": 8.0,
+    "joint": 7.0,
+    "kachol_lavan": 0.0,
+    "likud": 20.0,
+    "otzma": 8.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 4.0,
+    "yahadut": 7.0,
+    "yashar": 24.0,
+    "yisrael_beit": 8.0
+   },
+   "source": "kan",
+   "title": "סקר כאן חדשות: איזנקוט מוביל עם 24 מנדטים, נתניהו נחלש",
+   "url": "https://www.kan.org.il/content/kan-news/politic/1099439/"
+  },
+  {
+   "inferred_joint": null,
    "origin": "seed",
    "poll_date": "2025-12-05",
    "pollster": "מנחם לזר",
@@ -4461,6 +4486,31 @@
    },
    "source": "n12",
    "title": "סקר החדשות 12 – 2026-09-09",
+   "url": "https://special.n12.co.il/elections2026"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-14",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 13.0,
+    "democrats": 10.0,
+    "joint": 8.0,
+    "kachol_lavan": 0.0,
+    "likud": 20.0,
+    "otzma": 6.0,
+    "raam": 4.0,
+    "shas": 7.0,
+    "tzionut": 5.0,
+    "winter": 4.0,
+    "yahadut": 8.0,
+    "yashar": 23.0,
+    "yisrael_beit": 8.0
+   },
+   "source": "n12",
+   "title": "סקר החדשות 12 – 2026-09-14",
    "url": "https://special.n12.co.il/elections2026"
   },
   {
