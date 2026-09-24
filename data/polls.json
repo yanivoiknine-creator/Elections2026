@@ -1,5 +1,5 @@
 {
- "count": 233,
+ "count": 234,
  "polls": [
   {
    "inferred_joint": null,
@@ -1928,6 +1928,31 @@
    "source": "i24",
    "title": "סקר I24NEWS אחרי סגירת הרשימות: הליכוד שומרת על כוחה, וינטר נחלש",
    "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-a92f58d0"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-24",
+   "pollster": "דיירקט פולס",
+   "results": {
+    "bayit_tzioni": 0.0,
+    "beyahad": 9.0,
+    "democrats": 9.0,
+    "joint": 7.0,
+    "kachol_lavan": 0.0,
+    "likud": 27.0,
+    "otzma": 8.0,
+    "raam": 6.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 4.0,
+    "yahadut": 8.0,
+    "yashar": 22.0,
+    "yisrael_beit": 7.0
+   },
+   "source": "i24",
+   "title": "סקר I24NEWS: בן גביר מתחזק, וינטר וליברמן נחלשים",
+   "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-5d1d4577"
   },
   {
    "inferred_joint": null,
