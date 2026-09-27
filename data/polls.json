@@ -1,5 +1,5 @@
 {
- "count": 234,
+ "count": 235,
  "polls": [
   {
    "inferred_joint": null,
@@ -3516,6 +3516,30 @@
    "source": "maariv",
    "title": "סקר מעריב – 2026-08-28",
    "url": "https://themadad.com/allpolls/"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-08",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 2.0,
+    "beyahad": 10.0,
+    "democrats": 9.0,
+    "joint": 7.0,
+    "likud": 23.0,
+    "otzma": 7.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 3.0,
+    "yahadut": 7.0,
+    "yashar": 22.0,
+    "yisrael_beit": 8.0
+   },
+   "source": "maariv",
+   "title": "סקר הסקרים: לו הבחירות היו נערכות היום - אלו היו התוצאות",
+   "url": "https://www.maariv.co.il/news/elections-2026/article-1370099"
   },
   {
    "inferred_joint": null,
