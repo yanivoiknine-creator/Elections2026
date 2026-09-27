@@ -1,5 +1,5 @@
 {
- "count": 235,
+ "count": 236,
  "polls": [
   {
    "inferred_joint": null,
@@ -2486,6 +2486,30 @@
    "source": "kan",
    "title": "סקר כאן חדשות: איזנקוט מוביל עם 24 מנדטים, נתניהו נחלש",
    "url": "https://www.kan.org.il/content/kan-news/politic/1099439/"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-27",
+   "pollster": "קנטאר",
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 11.0,
+    "democrats": 9.0,
+    "joint": 7.0,
+    "likud": 21.0,
+    "otzma": 7.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 4.0,
+    "yahadut": 7.0,
+    "yashar": 23.0,
+    "yisrael_beit": 9.0
+   },
+   "source": "kan",
+   "title": "סקר כאן חדשות: נתניהו מתחזק במנדט, איזנקוט ובנט נחלשים",
+   "url": "https://www.kan.org.il/content/kan-news/politic/1103667/"
   },
   {
    "inferred_joint": null,
