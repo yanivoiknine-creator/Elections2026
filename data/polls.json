@@ -1,5 +1,5 @@
 {
- "count": 236,
+ "count": 237,
  "polls": [
   {
    "inferred_joint": null,
@@ -1401,6 +1401,30 @@
    "source": "hayom",
    "title": "סקר ישראל היום – 2026-08-20",
    "url": "https://themadad.com/allpolls/"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-17",
+   "pollster": "דודי חסיד",
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 13.0,
+    "democrats": 9.0,
+    "joint": 7.0,
+    "likud": 20.0,
+    "otzma": 8.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 4.0,
+    "yahadut": 7.0,
+    "yashar": 22.0,
+    "yisrael_beit": 8.0
+   },
+   "source": "hayom",
+   "title": "איזנקוט נחלש, גוש נתניהו ממקסם את כוחו",
+   "url": "https://www.israelhayom.co.il/news/politics/article/21444759"
   },
   {
    "inferred_joint": null,
