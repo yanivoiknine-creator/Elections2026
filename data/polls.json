@@ -1,5 +1,5 @@
 {
- "count": 237,
+ "count": 238,
  "polls": [
   {
    "inferred_joint": null,
@@ -5190,6 +5190,30 @@
    "source": "tv13",
    "title": "סקר חדשות 13 – 2026-08-26",
    "url": null
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-09-30",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 11.0,
+    "democrats": 11.0,
+    "joint": 9.0,
+    "likud": 19.0,
+    "otzma": 8.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "tzionut": 7.0,
+    "winter": 5.0,
+    "yahadut": 8.0,
+    "yashar": 21.0,
+    "yisrael_beit": 9.0
+   },
+   "source": "tv13",
+   "title": "איזנקוט נחלש, גוש נתניהו חוזר להוביל; הנדל מתחת לאחוז החסימה",
+   "url": "https://13tv.co.il/item/news/politics/politics/survey-905376242/"
   },
   {
    "inferred_joint": null,
