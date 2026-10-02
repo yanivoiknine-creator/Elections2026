@@ -1,5 +1,5 @@
 {
- "count": 238,
+ "count": 239,
  "polls": [
   {
    "inferred_joint": null,
@@ -3588,6 +3588,30 @@
    "source": "maariv",
    "title": "סקר הסקרים: לו הבחירות היו נערכות היום - אלו היו התוצאות",
    "url": "https://www.maariv.co.il/news/elections-2026/article-1370099"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-02",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 13.0,
+    "democrats": 10.0,
+    "kachol_lavan": 0.0,
+    "likud": 19.0,
+    "otzma": 9.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "tzionut": 5.0,
+    "winter": 4.0,
+    "yahadut": 7.0,
+    "yashar": 21.0,
+    "yisrael_beit": 9.0
+   },
+   "source": "maariv",
+   "title": "צלילה חופשית: סדר היום החדש משחק לידיים של אדם אחד",
+   "url": "https://www.maariv.co.il/news/elections-2026/article-1372750"
   },
   {
    "inferred_joint": null,
