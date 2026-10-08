@@ -1,5 +1,5 @@
 {
- "count": 240,
+ "count": 241,
  "polls": [
   {
    "inferred_joint": null,
@@ -1977,6 +1977,27 @@
    "source": "i24",
    "title": "סקר I24NEWS: בן גביר מתחזק, וינטר וליברמן נחלשים",
    "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-5d1d4577"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-08",
+   "pollster": "דיירקט פולס",
+   "results": {
+    "democrats": 10.0,
+    "joint": 7.0,
+    "likud": 26.0,
+    "otzma": 9.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "winter": 4.0,
+    "yahadut": 8.0,
+    "yashar": 20.0,
+    "yisrael_beit": 7.0
+   },
+   "source": "i24",
+   "title": "סקר מנדטים דרמטי של I24NEWS: נתניהו ואיזנקוט בירידה, בנט מתחזק",
+   "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-fa0f56f4"
   },
   {
    "inferred_joint": null,
