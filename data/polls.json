@@ -1,5 +1,5 @@
 {
- "count": 241,
+ "count": 242,
  "polls": [
   {
    "inferred_joint": null,
@@ -1425,6 +1425,29 @@
    "source": "hayom",
    "title": "איזנקוט נחלש, גוש נתניהו ממקסם את כוחו",
    "url": "https://www.israelhayom.co.il/news/politics/article/21444759"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-08",
+   "pollster": "דודי חסיד",
+   "results": {
+    "bayit_tzioni": 5.0,
+    "beyahad": 13.0,
+    "democrats": 8.0,
+    "joint": 8.0,
+    "likud": 21.0,
+    "otzma": 9.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "yahadut": 8.0,
+    "yashar": 22.0,
+    "yisrael_beit": 8.0
+   },
+   "source": "hayom",
+   "title": "עופר וינטר מתחת לאחוז החסימה, הנדל וזליכה יציבים",
+   "url": "https://www.israelhayom.co.il/news/politics/article/21582636"
   },
   {
    "inferred_joint": null,
