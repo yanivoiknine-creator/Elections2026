@@ -1,5 +1,5 @@
 {
- "count": 242,
+ "count": 243,
  "polls": [
   {
    "inferred_joint": null,
@@ -3656,6 +3656,30 @@
    "source": "maariv",
    "title": "צלילה חופשית: סדר היום החדש משחק לידיים של אדם אחד",
    "url": "https://www.maariv.co.il/news/elections-2026/article-1372750"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-08",
+   "pollster": "מנחם לזר (לזר מחקרים)",
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 13.0,
+    "democrats": 9.0,
+    "kachol_lavan": 0.0,
+    "likud": 20.0,
+    "otzma": 8.0,
+    "raam": 5.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 4.0,
+    "yahadut": 7.0,
+    "yashar": 21.0,
+    "yisrael_beit": 9.0
+   },
+   "source": "maariv",
+   "title": "סקר מנדטים: מפלגת הליכוד מתחזקת - והקרב מול איזנקוט מתחמם",
+   "url": "https://www.maariv.co.il/news/politics/article-1375198"
   },
   {
    "inferred_joint": null,
