@@ -1,5 +1,5 @@
 {
- "count": 243,
+ "count": 244,
  "polls": [
   {
    "inferred_joint": null,
@@ -2021,6 +2021,30 @@
    "source": "i24",
    "title": "סקר מנדטים דרמטי של I24NEWS: נתניהו ואיזנקוט בירידה, בנט מתחזק",
    "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-fa0f56f4"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-13",
+   "pollster": "דיירקט פולס",
+   "results": {
+    "bayit_tzioni": 0.0,
+    "beyahad": 13.0,
+    "democrats": 9.0,
+    "joint": 7.0,
+    "likud": 27.0,
+    "otzma": 9.0,
+    "raam": 6.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 0.0,
+    "yahadut": 8.0,
+    "yashar": 21.0,
+    "yisrael_beit": 7.0
+   },
+   "source": "i24",
+   "title": "סקר מנדטים דרמטי של I24NEWS: שבועיים לבחירות – וינטר לא עובר את אחוז החסימה",
+   "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-b9e16632"
   },
   {
    "inferred_joint": null,
