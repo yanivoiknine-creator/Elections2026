@@ -1,5 +1,5 @@
 {
- "count": 244,
+ "count": 245,
  "polls": [
   {
    "inferred_joint": null,
@@ -5355,6 +5355,31 @@
    "source": "tv13",
    "title": "שוויון בין נתניהו לאיזנקוט בצמרת - וגוש הקואליציה מגדיל את הפער",
    "url": "https://13tv.co.il/item/news/politics/politics/survey-905386103/"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-14",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 12.0,
+    "democrats": 9.0,
+    "joint": 9.0,
+    "kachol_lavan": 0.0,
+    "likud": 18.0,
+    "otzma": 8.0,
+    "raam": 6.0,
+    "shas": 7.0,
+    "tzionut": 6.0,
+    "winter": 4.0,
+    "yahadut": 8.0,
+    "yashar": 20.0,
+    "yisrael_beit": 9.0
+   },
+   "source": "tv13",
+   "title": "נתניהו נחלש, הנדל וזליכה עוברים - ומפת הגושים שוב משתנה",
+   "url": "https://13tv.co.il/item/news/politics/politics/survey-905396904/"
   },
   {
    "inferred_joint": null,
