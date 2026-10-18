@@ -1,5 +1,5 @@
 {
- "count": 246,
+ "count": 248,
  "polls": [
   {
    "inferred_joint": null,
@@ -2071,6 +2071,30 @@
   },
   {
    "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-18",
+   "pollster": "דיירקט פולס",
+   "results": {
+    "bayit_tzioni": 0.0,
+    "beyahad": 13.0,
+    "democrats": 9.0,
+    "kachol_lavan": 0.0,
+    "likud": 25.0,
+    "otzma": 10.0,
+    "raam": 6.0,
+    "shas": 8.0,
+    "tzionut": 6.0,
+    "winter": 0.0,
+    "yahadut": 8.0,
+    "yashar": 21.0,
+    "yisrael_beit": 6.0
+   },
+   "source": "i24",
+   "title": "סקר מנדטים של I24NEWS: נתניהו יורד, בן גביר מגיע לראשונה למספר דו-ספרתי",
+   "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-81805"
+  },
+  {
+   "inferred_joint": null,
    "origin": "seed",
    "poll_date": "2025-12-28",
    "pollster": null,
@@ -2625,6 +2649,29 @@
    "source": "kan",
    "title": "סקר כאן חדשות: נתניהו מתחזק במנדט, איזנקוט ובנט נחלשים",
    "url": "https://www.kan.org.il/content/kan-news/politic/1103667/"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-18",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 12.0,
+    "democrats": 9.0,
+    "joint": 8.0,
+    "likud": 21.0,
+    "otzma": 8.0,
+    "raam": 5.0,
+    "shas": 8.0,
+    "tzionut": 7.0,
+    "yahadut": 7.0,
+    "yashar": 23.0,
+    "yisrael_beit": 8.0
+   },
+   "source": "kan",
+   "title": "סקר כאן חדשות: גוש איזנקוט חוזר להוביל עם 52 מנדטים, הקואליציה נחלשה ל-51",
+   "url": "https://www.kan.org.il/content/kan-news/politic/1110393/"
   },
   {
    "inferred_joint": null,
