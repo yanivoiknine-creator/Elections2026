@@ -1,5 +1,5 @@
 {
- "count": 248,
+ "count": 249,
  "polls": [
   {
    "inferred_joint": null,
@@ -2092,6 +2092,27 @@
    "source": "i24",
    "title": "סקר מנדטים של I24NEWS: נתניהו יורד, בן גביר מגיע לראשונה למספר דו-ספרתי",
    "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-81805"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-20",
+   "pollster": "דיירקט פולס",
+   "results": {
+    "beyahad": 12.0,
+    "democrats": 9.0,
+    "joint": 8.0,
+    "likud": 26.0,
+    "otzma": 9.0,
+    "raam": 6.0,
+    "tzionut": 7.0,
+    "winter": 0.0,
+    "yashar": 20.0,
+    "yisrael_beit": 7.0
+   },
+   "source": "i24",
+   "title": "שבוע לבחירות: ההתחזקות של הקואליציה - על חשבון גוש איזנקוט",
+   "url": "https://www.i24news.tv/he/news/israel-elections-2026/polls/artc-91da6024"
   },
   {
    "inferred_joint": null,
