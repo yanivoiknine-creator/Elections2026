@@ -1,5 +1,5 @@
 {
- "count": 249,
+ "count": 250,
  "polls": [
   {
    "inferred_joint": null,
@@ -3795,6 +3795,30 @@
    "source": "maariv",
    "title": "סקר מנדטים: מפלגת הליכוד מתחזקת - והקרב מול איזנקוט מתחמם",
    "url": "https://www.maariv.co.il/news/politics/article-1375198"
+  },
+  {
+   "inferred_joint": null,
+   "origin": "scrape",
+   "poll_date": "2026-10-22",
+   "pollster": null,
+   "results": {
+    "bayit_tzioni": 4.0,
+    "beyahad": 15.0,
+    "democrats": 10.0,
+    "joint": 9.0,
+    "likud": 19.0,
+    "otzma": 7.0,
+    "raam": 5.0,
+    "shas": 8.0,
+    "tzionut": 7.0,
+    "winter": 0.0,
+    "yahadut": 7.0,
+    "yashar": 21.0,
+    "yisrael_beit": 8.0
+   },
+   "source": "maariv",
+   "title": "סקר מנדטים של מעריב: עופר וינטר בחוץ - וגוש נתניהו נכנס לצרות",
+   "url": "https://www.maariv.co.il/news/elections-2026/article-1380289"
   },
   {
    "inferred_joint": null,
